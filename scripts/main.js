@@ -1,6 +1,10 @@
 const main$$ = document.querySelector("main");
-const pokedex$$ = document.querySelector(".pokedex");
-const inicio$$ = document.querySelector(".inicio");
+const pokedex$$ = document.querySelectorAll(".pokedex");
+const inicio$$ = document.querySelectorAll(".inicio");
+const agenda$$ = document.querySelectorAll(".agenda");
+const batalla$$ = document.querySelectorAll(".batalla");
+const contacto$$ = document.querySelectorAll(".contacto");
+const about$$ = document.querySelectorAll(".about");
 
 //Landing page build
 const landing = () => {
@@ -88,6 +92,11 @@ const drawPokemons = (pokemons) => {
     pokedex$$.innerHTML = pokemons;
   }
 };
+const underConstruction = () => {
+  main$$.innerHTML = `
+ <img src="./styles/assets/img/underconstruction.png" alt="under construction"></img>
+ `;
+};
 const searchEngine = (arr, pattern) => {
   let results = arr.filter((pokemon) => {
     pokemon.name.toLowerCase().includes(pattern.toLowerCase());
@@ -103,37 +112,65 @@ const takeInput = (userInput) => {
 const init = async () => {
   landing();
   const pokemons = await getFirstPagePokemon();
-  pokedex$$.addEventListener("click", () => {
-    main$$.innerHTML = "";
-    const searchBar = document.createElement("input");
-    searchBar.innerHTML = `
+  pokedex$$.forEach((element) => {
+    element.addEventListener("click", () => {
+      main$$.innerHTML = "";
+      const searchBar = document.createElement("input");
+      searchBar.innerHTML = `
     <input type="text">
      `;
-    main$$.appendChild(searchBar);
-    drawPokemons(pokemons);
-    const pokePs$$ = document.getElementsByClassName("card-subtitle");
-    for (let i = 0; i < pokePs$$.length; i++) {
-      if (pokePs$$[i].innerHTML.indexOf(",") !== -1) {
-        pokePs$$[i].innerHTML = `
+      main$$.appendChild(searchBar);
+      drawPokemons(pokemons);
+      const pokePs$$ = document.getElementsByClassName("card-subtitle");
+      for (let i = 0; i < pokePs$$.length; i++) {
+        if (pokePs$$[i].innerHTML.indexOf(",") !== -1) {
+          pokePs$$[i].innerHTML = `
             <div class="pcontainer">
             <p class="${
               pokePs$$[i].innerText.split(",")[0]
             } card-subtitle multiple-type">${
-          pokePs$$[i].innerText.split(",")[0]
-        }</p>
+            pokePs$$[i].innerText.split(",")[0]
+          }</p>
             <p class="${
               pokePs$$[i].innerText.split(",")[1]
             } card-subtitle multiple-type">${
-          pokePs$$[i].innerText.split(",")[1]
-        }</p>
+            pokePs$$[i].innerText.split(",")[1]
+          }</p>
             </div>
             `;
+        }
       }
-    }
+    });
   });
-  inicio$$.addEventListener("click", () => {
-    main$$.innerHTML = "";
-    landing();
+  inicio$$.forEach((element) => {
+    element.addEventListener("click", () => {
+      main$$.innerHTML = "";
+      landing();
+    });
+  });
+  agenda$$.forEach((element) => {
+    element.addEventListener("click", () => {
+      main$$.innerHTML = "";
+      underConstruction();
+    });
+  });
+  batalla$$.forEach((element) => {
+    element.addEventListener("click", () => {
+      main$$.innerHTML = "";
+      underConstruction();
+    });
+  });
+  contacto$$.forEach((element) => {
+    element.addEventListener("click", () => {
+      main$$.innerHTML = "";
+      underConstruction();
+    });
+  });
+  about$$.forEach((element) => {
+    element.addEventListener("click", () => {
+      main$$.innerHTML = "";
+      underConstruction();
+    });
   });
 };
 
