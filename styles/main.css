@@ -1,0 +1,89 @@
+main {
+  background-color: rgb(255, 255, 255);
+}
+
+.logo-pokedex {
+  width: 10%;
+}
+
+.banner {
+  width: 100%;
+}
+
+h1 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  line-height: 84px;
+  text-align: center;
+  text-shadow: 1px 1px 2px #082b34;
+}
+
+h2 {
+  font-family: "Open sans", sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 32px;
+  margin: 0 0 24px;
+}
+
+.videsection {
+  opacity: 1;
+  margin-top: 100px;
+}
+.videsection-article {
+  margin-top: 20%;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.articletwo {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: rgb(71, 71, 71);
+}
+
+.titlesection {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.titlesection-article {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: rgb(71, 71, 71);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: x-large;
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.title-p {
+  width: 70%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imgsection {
+  opacity: 1;
+  padding-top: 20px;
+}
+.imgsection-article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.imgsection img {
+  max-width: 30%;
+}
+
+video {
+  display: block;
+  margin: 0 auto;
+}/*# sourceMappingURL=main.css.map */
