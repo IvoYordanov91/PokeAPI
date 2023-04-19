@@ -48,12 +48,11 @@ const landing = () => {
   main$$.appendChild(videoSection);
   main$$.appendChild(imgSection);
 };
-
 //Build Pokemon Datalayer
 //Get first page
 const getFirstPagePokemon = async () => {
   try {
-    const pokemons = [];
+    const pokemonCards = [];
     for (let i = 1; i < 151; i++) {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
       const res = await response.json();
@@ -66,30 +65,39 @@ const getFirstPagePokemon = async () => {
         typeClass: pokType.replace(",", " "),
         image: res.sprites["front_default"],
         type: pokType,
+        html: `
+        <article class="card">
+        <h3 class="card-title">${pokName}</h3>
+        <img src="${res.sprites["front_default"]}" alt="${pokName}" class="card-image"></img>
+        <p class="${pokType} card-subtitle">${pokType}</p>
+        </article>
+        `
       };
-      pokemons.push(`
-    <article class="card">
-    <h3 class="card-title">${pokemon.name}</h3>
-    <img src="${pokemon.image}" alt="${pokemon.name}" class="card-image"></img>
-    <p class="${pokemon.typeClass} card-subtitle">${pokemon.type}</p>
-    </article>
-    `);
+      pokemonCards.push(pokemon);
     }
-    return pokemons;
+    return pokemonCards;
   } catch (error) {
     console.log("Se ha producido el siguiente error:", error);
   }
 };
 
 const drawPokemons = (pokemons) => {
+  console.log(pokemons);
   if (main$$.children.length < 2) {
     const sectionPokemons = document.createElement("section");
     sectionPokemons.setAttribute("id", "pokedex");
-    sectionPokemons.innerHTML = pokemons;
+    pokemons.forEach((pokemon) => {   
+    sectionPokemons.innerHTML += pokemon.html;
+});
     main$$.appendChild(sectionPokemons);
   } else {
+    console.log(pokemons);
+    const pokecards = [];
+    pokemons.forEach((pokemon) => { 
+        pokecards.push(pokemon.html);
+    });    
     const pokeSection$$ = document.querySelector("#pokedex");
-    pokedex$$.innerHTML = pokemons;
+    pokeSection$$.innerHTML = pokecards;
   }
 };
 const underConstruction = () => {
@@ -99,13 +107,14 @@ const underConstruction = () => {
 };
 const searchEngine = (arr, pattern) => {
   let results = arr.filter((pokemon) => {
-    pokemon.name.toLowerCase().includes(pattern.toLowerCase());
+   return pokemon.name.toLowerCase().includes(pattern.toLowerCase());
   });
   drawPokemons(results);
 };
-const takeInput = (userInput) => {
+const takeInput = (arr) => {
+  const input$$ = document.querySelector("input");  
   input$$.addEventListener("input", () =>
-    searchEngine(pokemons, input$$.value)
+    searchEngine(arr, input$$.value)
   );
 };
 
@@ -120,6 +129,7 @@ const init = async () => {
     <input type="text">
      `;
       main$$.appendChild(searchBar);
+      takeInput(pokemons);
       drawPokemons(pokemons);
       const pokePs$$ = document.getElementsByClassName("card-subtitle");
       for (let i = 0; i < pokePs$$.length; i++) {
@@ -171,7 +181,7 @@ const init = async () => {
       main$$.innerHTML = "";
       underConstruction();
     });
-  });
+  });  
 };
 
 init();
