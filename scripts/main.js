@@ -82,7 +82,6 @@ const getFirstPagePokemon = async () => {
 };
 
 const drawPokemons = (pokemons) => {
-  console.log(pokemons);
   if (main$$.children.length < 2) {
     const sectionPokemons = document.createElement("section");
     sectionPokemons.setAttribute("id", "pokedex");
@@ -90,14 +89,16 @@ const drawPokemons = (pokemons) => {
     sectionPokemons.innerHTML += pokemon.html;
 });
     main$$.appendChild(sectionPokemons);
-  } else {
-    console.log(pokemons);
+  } else {    
     const pokecards = [];
     pokemons.forEach((pokemon) => { 
         pokecards.push(pokemon.html);
     });    
     const pokeSection$$ = document.querySelector("#pokedex");
-    pokeSection$$.innerHTML = pokecards;
+    pokeSection$$.innerHTML = "";
+    pokecards.forEach(value => {
+      pokeSection$$.innerHTML += value;
+    });    
   }
 };
 const underConstruction = () => {
