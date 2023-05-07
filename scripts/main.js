@@ -118,6 +118,46 @@ const takeInput = (arr) => {
     searchEngine(arr, input$$.value)
   );
 };
+const toDoList = () => {
+  main$$.innerHTML = `
+  <section>
+  <article>
+  <img src="./styles/assets/img/banner.png" alt="bannerPokedex" class="banner">
+  </article>
+  </section>
+  <section class="section-form">
+  <article>
+  <h1 class="agenda-title">TO-DO LIST 📝</h1>
+  <ul id="lista-tareas" class="agenda-ul"></ul>
+  </article>
+  <article class="articulo-formulario">
+  <form id="formulario-tarea" class="agenda-form">
+      <label for="titulo" class="agenda-label">Titulo</label>
+      <input type="text" id="titulo" name="titulo" required>
+      <label for="estado" class="agenda-label">Estado:</label>
+      <select name="estado" id="estado">
+          <option value="">Seleccionar</option>
+          <option value="Pendiente">Pendiente</option>
+          <option value="En Progreso">En Progreso</option>
+          <option value="Completada">Completada</option>
+      </select>
+      <label for="fecha" class="agenda-label">Fecha Limite</label>
+      <input type="text" id="fecha" name="fecha" placeholder="YYYY-MM-DD" required>
+      <label for="prioridad" class="agenda-label">Prioridad:</label>
+      <select name="prioridad" id="prioridad" required>
+          <option value="">Seleccionar</option>
+          <option value="alta">Alta</option>
+          <option value="media">Media</option>
+          <option value="baja">Baja</option>
+      </select>
+      <label for="descripcion" class="agenda-label">Descripción</label>
+      <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+      <button type="submit">Agregar Tarea</button>
+  </form>
+  </article>
+  </section>
+  `;
+}
 
 const init = async () => {
   landing();
@@ -162,7 +202,7 @@ const init = async () => {
   agenda$$.forEach((element) => {
     element.addEventListener("click", () => {
       main$$.innerHTML = "";
-      underConstruction();
+      toDoList();
     });
   });
   batalla$$.forEach((element) => {
