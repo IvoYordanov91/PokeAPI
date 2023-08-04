@@ -5,6 +5,7 @@ const agenda$$ = document.querySelectorAll(".agenda");
 const batalla$$ = document.querySelectorAll(".batalla");
 const contacto$$ = document.querySelectorAll(".contacto");
 const about$$ = document.querySelectorAll(".about");
+let formulario$$;
 
 //Landing page build
 const landing = () => {
@@ -80,6 +81,10 @@ const getFirstPagePokemon = async () => {
     console.log("Se ha producido el siguiente error:", error);
   }
 };
+const getFormData = (form) => {
+  const formData = new FormData(form);
+  console.log(formData);
+}
 
 const drawPokemons = (pokemons) => {
   if (main$$.children.length < 2) {
@@ -221,10 +226,21 @@ const init = async () => {
     element.addEventListener("click", () => {
       main$$.innerHTML = "";
       main$$.innerHTML = `
+      <form action="" method="POST" id="myForm">
+      <input type="text" name="email" placeholder="Email" />
+      <input type="password" name="password" placeholder="Password" />
       <div class="h-captcha" data-sitekey="64b86857-3167-4631-8552-7ce6cef8e328"></div>
+      <br />
+      <input type="submit" value="Submit" />
+      </form>
       `;
+      formulario$$ = document.querySelector("#myForm");
+      formulario$$.addEventListener("submit", (event) => {
+        event.preventDefault();
+        getFormData(event.target);
+      });
     });
-  });  
+  });
 };
 
 init();
