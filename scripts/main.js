@@ -220,7 +220,9 @@ const init = async () => {
   about$$.forEach((element) => {
     element.addEventListener("click", () => {
       main$$.innerHTML = "";
-      underConstruction();
+      main$$.innerHTML = `
+      <div class="h-captcha" data-sitekey="64b86857-3167-4631-8552-7ce6cef8e328"></div>
+      `;
     });
   });  
 };
