@@ -224,21 +224,7 @@ const init = async () => {
   });
   about$$.forEach((element) => {
     element.addEventListener("click", () => {
-      main$$.innerHTML = "";
-      main$$.innerHTML = `
-      <form action="" method="POST" id="myForm">
-      <input type="text" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Password" />
-      <div class="h-captcha" data-sitekey="64b86857-3167-4631-8552-7ce6cef8e328"></div>
-      <br />
-      <input type="submit" value="Submit" />
-      </form>
-      `;
-      formulario$$ = document.querySelector("#myForm");
-      formulario$$.addEventListener("submit", (event) => {
-        event.preventDefault();
-        getFormData(event.target);
-      });
+      underConstruction();
     });
   });
 };
